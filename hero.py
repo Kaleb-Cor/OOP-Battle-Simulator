@@ -3,8 +3,8 @@ import random
 class Hero:
     def __init__(self, name, classe):
         self.name = name
-        self.health = 100
-        self.attack_power = 15
+        self.health = 120
+        self.attack_power = 20
         self.hero_class = classe
 
     def attack(self):
