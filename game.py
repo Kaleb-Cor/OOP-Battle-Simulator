@@ -1,9 +1,17 @@
 from goblin import Goblin
 from hero import Hero
 
-
 ARENA_NAME = "THE BASEMENT"
 
+def battle(hero: Hero, enemy: Goblin):
+    while hero.is_alive() and enemy.is_alive():
+        enemy.take_damage(hero.attack())
+        if enemy.is_alive():
+            hero.take_damage(enemy.attack(), enemy)
+    if hero.is_alive():
+        print(f"{hero.name} wins")
+    else:
+        print(f"{hero.name} has lost")
 
 def main():
     #Open the arena and introduce its first opponent.
@@ -23,8 +31,7 @@ def main():
     print(f"{hero.name} the {hero.hero_class} enters the arena with {hero.health} health.")
     print("")
 
-    goblin2.take_damage(hero.attack())
-    hero.take_damage(goblin.attack(),goblin)
+    battle(hero, goblin2)
     
 if __name__ == "__main__":
     main()
