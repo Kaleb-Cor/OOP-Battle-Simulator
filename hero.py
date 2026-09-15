@@ -3,9 +3,24 @@ import random
 class Hero:
     def __init__(self, name, classe):
         self.name = name
-        self.health = 120
-        self.attack_power = 20
+        
         self.hero_class = classe
+
+        if classe.lower() == "barbarian":
+            self.health = 150
+            self.attack_power = 30
+            self.mana = 0
+            self.evade = 0
+        elif classe.lower() == "wizard":
+            self.health = 100
+            self.attack_power = 20
+            self.mana = 100
+            self.evade = 0
+        elif classe.lower() == "rogue":
+            self.health = 120
+            self.attack_power = 20
+            self.mana = 0
+            self.evade = 10
 
     def attack(self):
         return random.randint(1, self.attack_power)

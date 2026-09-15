@@ -13,7 +13,7 @@ def main():
 
     goblin = Goblin("Claire")
     goblin2= Goblin("Andrew")
-    hero = Hero("Jason", "Barbarian")
+    hero = Hero("Jason", "rogue")
 
     print("")
     print(f"{goblin.name} enters the arena with {goblin.health} health.")
