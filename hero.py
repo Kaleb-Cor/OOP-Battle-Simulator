@@ -3,7 +3,6 @@ import random
 class Hero:
     def __init__(self, name, classe):
         self.name = name
-        
         self.hero_class = classe
 
         if classe.lower() == "barbarian":
@@ -26,8 +25,12 @@ class Hero:
         return random.randint(1, self.attack_power)
     
     def take_damage(self, damage, attacker):
-        self.health = max(0, self.health - damage)
-        print(f"{self.name} takes {damage} damage from {attacker.name}. Health: {self.health}")
+
+        if random.randint(1, 100) > self.evade:
+            self.health = max(0, self.health - damage)
+            print(f"{self.name} takes {damage} damage from {attacker.name}. Health: {self.health}")
+        else:
+            print(f"{self.name} dodges {attacker.name}'s attack")
     
     def is_alive(self):
         return self.health > 0
