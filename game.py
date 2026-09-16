@@ -25,7 +25,7 @@ def main():
 
     goblin = Goblin("Claire")
     goblin2= Goblin("Andrew")
-    hero = Hero("Jason", "rogue")
+    hero = Hero("Jason", "barbarian")
 
     print("")
     print(f"{goblin.name} enters {ARENA_NAME} with {goblin.health} health.")

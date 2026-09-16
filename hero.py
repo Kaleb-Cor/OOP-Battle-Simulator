@@ -39,13 +39,14 @@ class Hero:
             self.mana -= attack_bonus
         if self.hero_class == "barbarian":
             if self.rage == True:
+                print(f"{self.name} is ENRAGED")
                 attack_bonus += 10
                 self.rage = False
         return random.randint(1, self.attack_power) + attack_bonus
     
     def take_damage(self, damage, attacker):
-        if self.hero_class == "barbarian" and random.randint(1,20) == 1:
-            self.rage == True
+        if self.hero_class == "barbarian" and random.randint(1,20) <= 3:
+            self.rage = True
         if random.randint(1, 100) > self.evade:
             self.health = max(0, self.health - damage)
             print(f"{self.name} takes {damage} damage from {attacker.name}. Health: {self.health}")
