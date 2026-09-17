@@ -4,13 +4,16 @@ class Hero:
     def __init__(self, name, classe):
         self.name = name
         self.hero_class = classe.lower()
+        self.moves = {"attack":self.attack}
 
         if classe.lower() == "barbarian":
             self.health = 150
             self.attack_power = 30
             self.mana = 0
             self.evade = 0
-            self.rage = False
+            self.rage_cool = 2
+            self.rage_bonus = 10
+            self.moves["rage"] = self.rage
         elif classe.lower() == "wizard":
             self.health = 100
             self.attack_power = 20
@@ -32,26 +35,20 @@ class Hero:
             self.mana = 100
             self.evade = 0
 
-    def attack(self):
-        attack_bonus = 0
-        if self.hero_class == "wizard" or self.hero_class == "paladin":
-            attack_bonus = random.randint(0,self.mana)
-            self.mana -= attack_bonus
-        if self.hero_class == "barbarian":
-            if self.rage == True:
-                print(f"{self.name} is ENRAGED")
-                attack_bonus += 10
-                self.rage = False
-        return random.randint(1, self.attack_power) + attack_bonus
-    
-    def take_damage(self, damage, attacker):
-        if self.hero_class == "barbarian" and random.randint(1,20) <= 3:
-            self.rage = True
-        if random.randint(1, 100) > self.evade:
-            self.health = max(0, self.health - damage)
-            print(f"{self.name} takes {damage} damage from {attacker.name}. Health: {self.health}")
-        else:
-            print(f"{self.name} dodges {attacker.name}'s attack")
+    def move(self):
+        for i in self.moves:
+            print(i)
+        print(self.name)
+        move = input(f"what will {self.name} do?: ").lower()
+        for i in self.moves:
+            if move == i:
+                self.moves[i]
+                
+    def rage(self,_input):
+        self.attack(self.rage_bonus)
     
     def is_alive(self):
         return self.health > 0
+
+    def attack(self, bonus):
+        print(f"hello {bonus}")
