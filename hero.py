@@ -12,8 +12,8 @@ class Hero:
             self.mana = 0
             self.evade = 0
             self.rage_cool = 2
-            self.rage_bonus = 10
             self.moves["rage"] = self.rage
+            self.bonus = 10
         elif classe.lower() == "wizard":
             self.health = 100
             self.attack_power = 20
@@ -43,12 +43,15 @@ class Hero:
         for i in self.moves:
             if move == i:
                 self.moves[i]
+                break
+            print("shimmy")
+            
                 
     def rage(self,_input):
-        self.attack(self.rage_bonus)
+        self.attack()
     
     def is_alive(self):
         return self.health > 0
 
-    def attack(self, bonus):
-        print(f"hello {bonus}")
+    def attack(self):
+        print(f"hello {self.bonus}")

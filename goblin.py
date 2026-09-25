@@ -1,23 +1,19 @@
 import random
 
+from enemy import enemy
 
-class Goblin:
+class Goblin(enemy):
     #"""A completed character class students can examine as an OOP example."""
 
     def __init__(self, name):
-        self.name = name
-        self.health = 100
-        self.attack_power = 15
+        super().__init__(name,100,10)
+        self.gold = 0
 
-    def attack(self):
-        #"""Return a random amount of damage."""
-        return random.randint(1, self.attack_power)
-
-    def take_damage(self, damage):
-        #"""Reduce health without allowing it to fall below zero."""
-        self.health = max(0, self.health - damage)
-        print(f"{self.name} takes {damage} damage. Health: {self.health}")
-
-    def is_alive(self):
-        #"""Return True while the goblin has health remaining."""
-        return self.health > 0
+    def steal_gold(self, target):
+        gold = random.randint(5,10)
+        if gold > target.gold:
+            self.gold += target.gold
+            target.gold = 0
+        else:
+            self.gold += gold
+            target.gold -= gold
